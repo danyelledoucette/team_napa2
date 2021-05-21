@@ -18,7 +18,7 @@ def home():
     return (
         f"Avaliable Routes:<br/>"
         f"/api/v1/resources/wines/all<br/>"
-        f"Avliable Searches:<br/>"
+        f"Avaliable Searches:<br/>"
         f"/api/v1/resources/wines<br/>"
         f"/api/v1/resources/wines?country=Australia<br/>"
         f"/api/v1/resources/wines?country=US<br/>"

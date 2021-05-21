@@ -1,21 +1,145 @@
 ﻿{% extends "layout.html" %}
 
 {% block content %}
-<h2>Determine the weight of your brain based on the it's Size</h2>
-<form method=post>
-    <dl>
-        <p>
-            <h3>Size</h3>
-            Enter the size of the brain you wish to get the weight <br/><br/>
-            {{form.title}}
-        </p>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" type="text/css" href="/static/content/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/static/content/site.css" />
+<style>
+.mySlides {display:none}
+.w3-left, .w3-right, .w3-badge {cursor:pointer}
+.w3-badge {height:13px;width:13px;padding:0}
+</style>
 
-        <p>
-            <h3>Name the Brain (optional)</h3> 
-          You can give a name to the brain you are "weighing", if you like.<br /><br />
-            {{form.text}}
-        </p>
-    </dl>
-    <p><input type="submit" value="submit"</p>
- </form>
+    <body style="background-color: rgba(71, 4, 85, 0.425);">
+        
+        <!-- Slideshow container-->
+
+        <div class="w3-content w3-display-container">
+
+            <div class="w3-display-container mySlides">
+              <img src="static/images/argentina.jpg" height="500px" width="980px">
+              <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
+                Argentinian Wineries
+              </div>
+            </div>
+            
+            <div class="w3-display-container mySlides">
+              <img src="static/images/spain.jpg" height="500px" width="980px">
+              <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
+                Spanish Wineries
+              </div>
+            </div>
+            
+            <div class="w3-display-container mySlides">
+              <img src="static/images/france.jpg" height="500px" width="980px">
+              <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
+                French Wineries
+              </div>
+            </div>
+
+            <div class="w3-display-container mySlides">
+                <img src="static/images/australia.jpg" height="500px" width="980px">
+                <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
+                  Australian Wineries
+                </div>
+            </div>
+            
+            <div class="w3-display-container mySlides">
+                <img src="static/images/italy.jpg" height="500px" width="980px">
+                <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
+                  Italian Wineries
+                </div>
+            </div>
+            
+            <div class="w3-display-container mySlides">
+                <img src="static/images/canada.jpg" height="500px" width="950px">
+                <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
+                  Canadian Wineries
+                </div>
+            </div>
+
+            <div class="w3-display-container mySlides">
+                <img src="static\images\us_winery.jpg" height="500px" width="980px">
+                <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
+                  American Wineries
+                </div>
+            </div>
+
+            <button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
+            <button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
+            
+            </div>
+            
+            <script>
+            var slideIndex = 1;
+            showDivs(slideIndex);
+            
+            function plusDivs(n) {
+              showDivs(slideIndex += n);
+            }
+            
+            function showDivs(n) {
+              var i;
+              var x = document.getElementsByClassName("mySlides");
+              if (n > x.length) {slideIndex = 1}
+              if (n < 1) {slideIndex = x.length}
+              for (i = 0; i < x.length; i++) {
+                 x[i].style.display = "none";  
+              }
+              x[slideIndex-1].style.display = "block";  
+            }
+            </script>
+          <br>
+
+
+          <!-- Form container -->
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2 style="font-weight: bolder;">Use our machine learning model to determine a wine's rating based on the following characteristics</h2>
+                    <br>
+                    <form method=post>
+                        <dl>
+                            <p>
+                                <h3 style="background-color: seashell;">Acidity</h3>
+                                Enter a pH level<br/><br/>
+                                {{form.title}}
+                            </p>
+                            <br>
+                            <p>
+                                <h3 style="background-color: seashell;">Alcohol</h3>
+                                Enter an alcohol percentage<br/><br/>
+                                {{form.title}}
+                            </p>
+                            <br>
+                            <p>
+                                <h3 style="background-color: seashell;">Name your wine (Optional)</h3> 
+                            Give a name to your wine selection, if you like.<br /><br />
+                                {{form.text}}
+                            </p>
+                        </dl>
+                        <p><input type="submit" value="submit"</p>
+                    </form>
+                </div>
+            </div> 
+        </div>
+
+        <br>
+
+        <b><h2>Contact Us:</h2>
+        <!-- <h3>{{ message }}</h3> -->
+
+        <address>
+            Team Napa Valley<br />
+            Napa, CA 94559<br />
+            <abbr title="Phone">P:</abbr>
+            707.251.5895
+        </address></b>
+
+    </body>
+</html>
+
 {% endblock %}
