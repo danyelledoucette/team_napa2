@@ -23,6 +23,9 @@ Maria Barrera
     (use D3 or Plotly to change the visualization)
 - Create an analysis of existing data to make a prediction, classification, or regression
 
+# Project Description 
+The project is about wine data around the world. Data includes the wine name, winery, country, points, wine taster, review, acidity, etc.  Scope of data is only for 7 countries:  Argentina, Australia, Canada, France, Italy, Spain & USA.
+
 # Datasource 
 Kaggle
 
