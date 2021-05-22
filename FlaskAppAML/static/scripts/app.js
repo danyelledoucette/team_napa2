@@ -1,7 +1,16 @@
 var wineData
 
+// Variable for XMLHttpRequest
+var request = new XMLHttpRequest()
+
+// Connection
+// request.open('GET', 'https://winery-api.azurewebsites.net/api/v1/resources/wines/all', true) 
+// request.open('GET', 'localhost:5000/api/v1/resources/wines/all', true) 
+
+request.onload = function () {
+
   // Clears dropdown
-var dropdownMenu = d3.select("#selDataset").html(""); 
+var dropdownMenu = JSON.parse(this.response)
 var data = dropdownMenu.property("value");
 
   // Function for change on dropdown menu
@@ -12,7 +21,7 @@ function selectData(selectedCountry, runNum){
   
 
 // Read the json file for the data
-  d3.json("http://127.0.0.1:5000/api/v1/resources/wines/all").then((data) => {
+  d3.json("https://winery-api.azurewebsites.net/api/v1/resources/wines/all").then((data) => {
   
   wineData=data
   console.log(data);
@@ -24,19 +33,13 @@ function selectData(selectedCountry, runNum){
 
   
   var uniqueCountries = [];
-  // var uniqueWineries = [];
+
 
   for(i=0; i<data.length; i++){
     if(uniqueCountries.indexOf(data[i].country) === -1){
       uniqueCountries.push(data[i].country);
     }
   }
-
-  // for(i=0; i<data.length; i++){
-  //   if(uniqueWineries.indexOf(data[i].winery) === -1){
-  //     uniqueWineries.push(data[i].winery);
-  //   }
-  // }
 
   console.log(uniqueCountries);
   // console.log(uniqueWineries);
@@ -47,34 +50,16 @@ function selectData(selectedCountry, runNum){
     uniqueCountries.forEach(country =>
       {
  //       // console.log(item.id);
+
       d3.select("#selDataset").append('option').attr('value', country).text(country);
       });
 
   // Selected value is passed
   d3.select("#selDataset").node().value = selectedCountry;
   }
-  
- 
-  
-    // Select the uniqueCountries array and for each item append the item ID and adds ID to dropdown
-//     uniqueWineries.forEach(winery =>
-//       {
-//  //       // console.log(item.id);
-//       d3.select("#selDataset").append('option').attr('value', winery).text(winery);
-//       });
 
-
-//  // Selected value is passed
-//  d3.select("#selDataset").node().value = selectedCountry;
-//   // Filter data for selected country from dropdown
   var countryData = data.filter(winery=> (winery.country == selectedCountry));
-    
-  // d3.select("#selDataset").node().value = selectedCountry;
-  // Filter data for selected country from dropdown
-  // var countryData = data.filter(winery=> (winery.winery == selectedCountry));
-//   // Check the data loaded for the selected country
-  // console.log(countryData);
-  
+
   // Update the panel display to have the selected country
   var panelDisplay = d3.select("#sample-data");
   panelDisplay.html("");
@@ -83,16 +68,6 @@ function selectData(selectedCountry, runNum){
         console.log(winery);
         panelDisplay.append("p").text(`${winery[0]}: ${winery[1]}`)
      });
-
-    //  var panelDisplay = d3.select("#sample-data");
-    //  panelDisplay.html("");
-    //  Object.entries(countryData[0]).forEach(winery=> 
-    //     {
-    //        console.log(winery);
-    //        panelDisplay.append("p").text(`${winery[0]}: ${winery[1]}`)
-    //     });
-
-    // Wineries Per Country
 
 //   // BAR CHART
 
@@ -197,12 +172,16 @@ var layoutTrace = {
 Plotly.newPlot("circle", data, layoutTrace);
   
   })
-}
 
 function optionChanged(winery) {
   console.log(winery);
   // resetData();
   selectData(winery, 1)
- }
+}
+
+}
 // Initial test starts at Italy
 selectData("Italy", 0)
+
+// Send request
+request.send()
