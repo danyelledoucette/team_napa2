@@ -5,6 +5,18 @@
 <!-- <h2>{{ title }}.</h2>
 <h3>{{ message }}</h3> -->
 
+<!-- ############################################# -->
+<!-- add background image -->
+<!-- ############################################# -->
+<style>
+body {
+    background-image:url(../static/images/vineyard_02.jpg);
+    background-repeat:no-repeat;
+    background-size:cover
+}
+</style>
+<!-- ############################################# -->
+
 <div class="container">
     <!-- WORD -->
     <!-- <div class="row">
@@ -12,20 +24,37 @@
             <div id="word-cloud">
             </div>
         </div> -->
-    <br><br>
+    <br>
     <div class="row">
       <div class="col-md-12 jumbotron text-center">
-        <h1>The Wide World of Wineries</h1>
-        <p>Explore stats from wineries all around the world!</p>
+        <!-- Header -->
+        <h1 style="color:blue", style="font-family: 'Comic Sans Serif'", 
+            style="font-size: medium", 
+            text-align="center">
+        <strong> The Wide World of Wineries </strong></h1>
+        <img src="../static/images/winebottles.jfif" class="center" width="500" height="200"><br> 
+        <img src="../static/images/flag-of-Argentina.png" width="75" height="50"> 
+        <img src="../static/images/flag-of-Australia.png" width="75" height="50"> 
+        <img src="../static/images/flag-of-Canada.png" width="75" height="50"> 
+        <img src="../static/images/flag-of-France.png" width="75" height="50"> 
+        <img src="../static/images/flag-of-Italy.png" width="75" height="50"> 
+        <img src="../static/images/flag-of-Spain.png" width="75" height="50"> 
+        <img src="../static/images/flag-of-USA.png" width="75" height="50"> 
+        <br><br>
+        <p>Explore stats from wineries around the world!</p>
       </div>
     </div>
-    <br><br>
-    <h1>Wine Info and Price vs. Points Comparison</h1>
+
+    <h1 style="color:rgb(249, 249, 250)", style="font-family: Arial", 
+            style="font-size: medium">
+        <strong> Wine Info and Price vs. Points Comparison </strong></h1>
         <br><br>
     <div class="row">
       <div class="col-sm-2">
         <div class="chart">
-          <h5>Choose a Country:</h5>
+          <h5 style="color:rgb(249, 249, 250)", style="font-family: Arial", 
+          style="font-size: medium">
+            <strong> Choose a Country: </strong></h5>
           <select id="selDataset" onchange="optionChanged(this.value)"></select>
         </div>
         <br><br>
@@ -43,37 +72,41 @@
         </div>
     </div>
     
-    <br><br><br>
-    <h1>Number of Wineries by Country</h1>
+    <br><br>
+    <h1 style="color:rgb(249, 249, 250)", style="font-family: Arial", 
+            style="font-size: medium">
+        <strong> Number of Wineries by Country </strong></h1>
+        <br>
     <br>
     <div class="row">
       <div class="col-md-6">
         <div id="bubble"></div>
-        
       </div>
-    <br><br>
+        <br><br>
         <div class="col-md-6">
             <div id="circle">
             </div>	
         </div>
     </div>
     <br><br>
-    <h1>Sommelier Reviews</h1>
+    <h1 style="color:rgb(249, 249, 250)", style="font-family: Arial", 
+            style="font-size: medium">
+        <strong> Sommelier Reviews </strong></h1>
     <br><br>
     <div class="row">
         <div class=col-md-6>
-            <img src="static/images/iqr taster name and count of points.png" alt="Taster-Points IQR">
+            <!-- <img src="static/images/iqr taster name and count of points.png" alt="Taster-Points IQR"> -->
             <br><br><br>
         </div>
         <div class="row">
             <div class=col-md-6>
-                <img src="static/images/points for tasters.png" alt="Taster-Points Violin">
+                <!-- <img src="static/images/points for tasters.png" alt="Taster-Points Violin"> -->
                 <br><br><br><br><br><br>
             </div>
         </div>
     <div class="row">
         <div class=col-md-6>
-            <img src="static/images/taster iqr price.png" alt="Taster-Price IQR">
+            <!-- <img src="static/images/taster iqr price.png" alt="Taster-Price IQR"> -->
             <br><br><br>
         </div>
     </div>
@@ -92,5 +125,6 @@
 <script type="text/javascript" src="static/scripts/app.js"></script>
 <!-- <script type="text/javascript" src="static/js/test.js"></script> -->
 <!-- <script type="text/javascript" src="australia_app.js"></script> -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 {% endblock %}
