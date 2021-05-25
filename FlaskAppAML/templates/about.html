@@ -10,121 +10,110 @@
 <!-- ############################################# -->
 <style>
     body {
-        background-image:url(../static/images/vineyard_02.jpg); 
-        /* opacity:0.5; */
+        background-image:url(../static/images/vineyard_02_faded.jpg); 
         background-repeat:no-repeat;
         background-size:cover
         }
     </style>
 <!-- ############################################# -->
-    
+
 <div class="container">
-    <!-- WORD -->
-    <!-- <div class="row">
-        <div class="col-md-12">
-            <div id="word-cloud">
-            </div>
-        </div> -->
-    <br>
+    <!-- <br> -->
     <div class="row">
-      <div class="col-md-10 jumbotron text-center">
+      <div class="col-md-12 text-center">    
         <!-- Header -->
-        <h1 style="color:blue", style="font-family: 'Comic Sans Serif'", 
-            style="font-size: medium", 
-            text-align="center">
-        <strong> The Wide World of Wineries </strong></h1>
-        <img src="../static/images/winebottles.jfif" class="center" width="500" height="200"><br> 
-        <img src="../static/images/flag-of-Argentina.png" width="75" height="50"> 
-        <img src="../static/images/flag-of-Australia.png" width="75" height="50"> 
-        <img src="../static/images/flag-of-Canada.png" width="75" height="50"> 
-        <img src="../static/images/flag-of-France.png" width="75" height="50"> 
-        <img src="../static/images/flag-of-Italy.png" width="75" height="50"> 
-        <img src="../static/images/flag-of-Spain.png" width="75" height="50"> 
-        <img src="../static/images/flag-of-USA.png" width="75" height="50"> 
+        <h1 style="color:rgb(0, 0, 10)",  
+            style="font-size: medium", text-align="center">
+        <strong> World of Wineries </strong></h1>
+
+        <img src="../static/images/flg_Argentina.png" width="75" height="50"> 
+        <img src="../static/images/flg_Australia.png" width="75" height="50"> 
+        <img src="../static/images/flg_Canada.png" width="75" height="50"> 
+        <img src="../static/images/flg_France.png" width="75" height="50"> 
+        <img src="../static/images/flg_Italy.png" width="75" height="50"> 
+        <img src="../static/images/flg_Spain.png" width="75" height="50"> 
+        <img src="../static/images/flg_USA.png" width="75" height="50"> 
         <br><br>
         <p>Explore stats from wineries around the world!</p>
       </div>
     </div>
 
-    <h1 style="color:rgb(249, 249, 250)", style="font-family: Arial", 
-            style="font-size: medium">
-        <strong> Wine Info and Price vs. Points Comparison </strong></h1>
-        <br><br>
-    <div class="row">
-      <div class="col-sm-2">
-        <div class="chart">
-          <h5 style="color:rgb(249, 249, 250)", style="font-family: Arial", 
-          style="font-size: medium">
-            <strong> Choose a Country: </strong></h5>
-          <select id="selDataset" onchange="optionChanged(this.value)"></select>
-        </div>
-        <br><br>
-        </div>
-        <div class="col-sm-4">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Wine Info</h3>
+<!-- This section handles the filter selection to search & display the wines. -->
+  <div class="container">
+    <div class="row margin-top-50">
+      <div class="col-md-2">
+        <aside class="filters">
+          <div class="panel panel-default">
+            <div class="panel-heading">Filter Search</div>
+            <div class="panel-body">
+              <form>
+                <div class="form-group">
+                  <ul class="list-group" id="filters">
+                    <li class="filter list-group-item">
+                      <label for="date">Enter a Country</label>
+                      <input class="form-control" id="country" type="text" placeholder="US">
+                    </li>
+                    <!-- ------------------------------ -->
+                    <!-- begin additional field prompts -->
+                    <!-- ------------------------------ -->
+                    <li class="filter list-group-item">
+                      <label for="date">Enter a Price</label>
+                      <input class="form-control" id="price" type="number" placeholder=19>
+                    </li>
+                    <li class="filter list-group-item">
+                      <label for="date">Enter a Variety</label>
+                      <input class="form-control" id="datetime" type="text" placeholder="Cabernet Sauvignon">
+                    </li>
+                    <!-- ------------------------------ -->
+                    <!-- end additional field prompts -->
+                    <!-- ------------------------------ -->
+                  </ul>
                 </div>
-                <div id="sample-data" class="panel-body"></div>
-              </div>
-        </div>
-        <div class="col-md-6">
-            <div id="bar"></div>
-        </div>
-    </div>
-    
-    <br><br>
-    <h1 style="color:rgb(249, 249, 250)", style="font-family: Arial", 
-            style="font-size: medium">
-        <strong> Number of Wineries by Country </strong></h1>
-        <br>
-    <br>
-    <div class="row">
-      <div class="col-md-6">
-        <div id="bubble"></div>
-      </div>
-        <br><br>
-        <div class="col-md-6">
-            <div id="circle">
-            </div>	
-        </div>
-    </div>
-    <br><br>
-    <h1 style="color:rgb(249, 249, 250)", style="font-family: Arial", style="font-size: medium">
-            <strong> Sommelier Reviews </strong></h1>
-    <br><br>
-    <div class="row">
-        <div class=col-md-6>
-            <!-- <img src="static/images/iqr taster name and count of points.png" alt="Taster-Points IQR"> -->
-            <br><br><br>
-        </div>
-        <div class="row">
-            <div class=col-md-6>
-                <!-- <img src="static/images/points for tasters.png" alt="Taster-Points Violin"> -->
-                <br><br><br><br><br><br>
+                <button id="filter-btn" type="button" class="btn btn-default">Filter Table</button>
+              </form>
             </div>
+          </div>
+        </aside>
+      </div>
+      <div class="col-md-10">
+        <div id="table-area" class="">
+          <table id="wine-table" class="table table-striped">
+            <thead>
+              <tr>
+                <th class="table-head">Country</th>
+                <th class="table-head">Wine</th>
+                <th class="table-head">Variety</th>
+                <th class="table-head">Winery</th>
+                <th class="table-head">Points</th>
+                <th class="table-head">Price</th>
+                <th class="table-head">Province</th>
+                <th class="table-head">Region_1</th>
+                <th class="table-head">Description</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
         </div>
-    <div class="row">
-        <div class=col-md-6>
-            <!-- <img src="static/images/taster iqr price.png" alt="Taster-Price IQR"> -->
-            <br><br><br>
-        </div>
+      </div>
     </div>
-    
-    </div>
-    <!-- <div class="row">
-        <div id="sunburst"></div>
-    </div> -->
-</div>
-</div>
+  </div>
+<!-- end of filter search & display of wine selection -->
+
+</div>    <!-- This is for 1st top container-->
+
+
+<!-- <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3-scale-radial.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script> -->
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
 
 <script src="https://d3js.org/d3.v5.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3-scale-radial.js"></script>
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
-<script type="text/javascript" src="static/scripts/app.js"></script>
-<!-- <script type="text/javascript" src="static/js/test.js"></script> -->
-<!-- <script type="text/javascript" src="australia_app.js"></script> -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="../static/scripts/data_comparison.js"></script>
+<script src="../static/scripts/app_comparison.js"></script>
+
+<!-- ** reference code from UFO level-2
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="static/js/data.js"></script>
+<script src="static/js/app.js"></script> -->
 
 {% endblock %}
