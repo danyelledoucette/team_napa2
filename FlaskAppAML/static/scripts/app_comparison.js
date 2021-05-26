@@ -33,15 +33,22 @@ function updateFilters() {
   var elementValue = changedElement.property("value");
   var filterId = changedElement.attr("id");
 
+  // console.log(changedElement, elementValue, filterId)
   // If a filter value was entered then add that filterId and value
   // to the filters list. Otherwise, clear that filter from the filters object
+  if (filterId==price) {elementValue=parseInt(elementValue)}; 
+  // console.log(elementValue, filterId)
+
   if (elementValue) {
     filters[filterId] = elementValue;
+    // console.log(filters[filterId], filterId, elementValue);
+
   }
   else {
     delete filters[filterId];
   }
-
+// console.log(filters);
+// console.log(filters[filterId], filterId, elementValue);
   // Call function to apply all filters and rebuild the table
   filterTable();
 
@@ -55,9 +62,9 @@ function filterTable() {
   // Loop through all of the filters and keep any data that
   // matches the filter values
   Object.entries(filters).forEach(([key, value]) => {
-    filteredData = filteredData.filter(row => row[key] === value);
+    filteredData = filteredData.filter(row => row[key] == value);
   });
-
+// console.log(filteredData);
   // Finally, rebuild the table using the filtered Data
   buildTable(filteredData);
 }
