@@ -3,11 +3,16 @@ The Wide World of Wineries
 Date: 05/27/2021
 
 # Team Members
-Alex Duong
-Danyelle Doucette
-Elizabeth Lau
-Brandie Limon
-Maria Barrera
+
+Alex Duong - Tableau Visualizations
+
+Danyelle Doucette - front end/deployment of api and website
+
+Elizabeth Lau - Wine Data Machine Learning
+
+Brandie Limon - Red/White wine data Machine learning
+
+Maria Barrera - Front End dev
 
 # Project Requirements 
 - Create a front-end interface that maps to an API to "smarten" the algorithm.
