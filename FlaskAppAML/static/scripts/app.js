@@ -3,15 +3,9 @@ var wineData
 // Variable for XMLHttpRequest
 var request = new XMLHttpRequest()
 
-// Connection
-// request.open('GET', 'https://winery-api.azurewebsites.net/api/v1/resources/wines/all', true) 
-// request.open('GET', 'localhost:5000/api/v1/resources/wines/all', true) 
 
 request.onload = function () {
 
-  // Clears dropdown
-var dropdownMenu = JSON.parse(this.response)
-var data = dropdownMenu.property("value");
 
   // Function for change on dropdown menu
 function selectData(selectedCountry, runNum){
