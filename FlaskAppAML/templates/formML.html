@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
+
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -12,23 +13,101 @@
 .w3-badge {height:13px;width:13px;padding:0}
 </style>
 
-<body style="background-color: rgb(217, 186, 247); font-family:Arial, Helvetica, sans-serif; color:rgb(40, 3, 75);">
+<body style="background-color: rgba(71, 4, 85, 0.425); font-family:Arial, Helvetica, sans-serif; color:rgb(40, 3, 75);">
 <div class="container">
 <div class="row"><div class="col-md-12" >
   <section id="Reftable" >
-    <aside class="filters"><div class="panel panel-default" style="background-color: rgb(217, 186, 247); ">
+    <aside class="filters"><div class="panel panel-default" style="background-color: rgba(71, 4, 85, 0.425); ">
       <hr>
       <h1 style="text-align-last: center; font-size: 60px"> <strong>Wine Rating Prediction Model</strong></h1>
+      <h3 style="text-align-last: center"> <strong>Multiclass Neural Network @AzureML</strong></h3>
       <hr>
       <div class="panel-heading" style="background-color: rgb(40, 3, 75); color: white">
           <h3>Select the country and one for each of the following parameters to get the rating of the wine you are interested in:</h3></div>        
     </section>
 
+    <div class="w3-content w3-display-container">
+
+      <div class="w3-display-container mySlides">
+        <img src="static/images/argentina.jpg" height="500px" width="980px">
+        <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
+          Argentina
+        </div>
+      </div>
+      
+      <div class="w3-display-container mySlides">
+        <img src="static/images/spain.jpg" height="500px" width="980px">
+        <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
+          Spain
+        </div>
+      </div>
+      
+      <div class="w3-display-container mySlides">
+        <img src="static/images/france.jpg" height="500px" width="980px">
+        <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
+          France
+        </div>
+      </div>
+
+      <div class="w3-display-container mySlides">
+          <img src="static/images/australia.jpg" height="500px" width="980px">
+          <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
+            Australia
+          </div>
+      </div>
+      
+      <div class="w3-display-container mySlides">
+          <img src="static/images/italy.jpg" height="500px" width="980px">
+          <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
+            Italy
+          </div>
+      </div>
+      
+      <div class="w3-display-container mySlides">
+          <img src="static/images/canada.jpg" height="500px" width="980px">
+          <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
+            Canada
+          </div>
+      </div>
+
+      <div class="w3-display-container mySlides">
+          <img src="static\images\us_winery.jpg" height="500px" width="980px">
+          <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
+            United States
+          </div>
+      </div>
+
+      <button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
+      <button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
+      
+      </div>
+      
+      <script>
+      var slideIndex = 1;
+      showDivs(slideIndex);
+      
+      function plusDivs(n) {
+        showDivs(slideIndex += n);
+      }
+      
+      function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        if (n > x.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = x.length}
+        for (i = 0; i < x.length; i++) {
+           x[i].style.display = "none";  
+        }
+        x[slideIndex-1].style.display = "block";  
+      }
+      </script>
+    <br>
+
 <form action= "/ml" method="POST">
 <div class="row">
   <div class="col-md-12">
     <div class="country">
-        <h4><strong>Country</strong></h4><h5>select one</h5>
+        <h4><strong>Country</strong></h4>
         <label for="country"></label>
         <select name="country" class="form-control" id="selDataset_country"></select>
       </div>
@@ -39,7 +118,7 @@
 <div class="row">
     <div class="col-md-6">
       <div class="deslen">
-        <h4><strong>Length of Reviewers Comments</strong></h4><h5>select one</h5>
+        <h4><strong>Length of Reviewer's Comments</strong></h4><h5>select one</h5>
         <label for="deslen"></label>
         <select name="deslen" class="form-control" id="selDataset_deslen"></select>
       </div>
@@ -63,12 +142,13 @@
     </div>
     <div class="col-md-6">
       <div class="province">
-        <h4><strong>Province of the Wine</strong></h4><h5>select one</h5>
+        <h4><strong>Province</strong></h4><h5>select one</h5>
         <label for="province"></label>
         <select name="province" class="form-control" id="selDataset_province"></select>
       </div>
     </div>
 </div><br>
+    
       <p><input type="submit" value="Submit"></p>
  </form>
 

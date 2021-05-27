@@ -108,9 +108,10 @@ MLHEADERS_SPA = {'Content-Type':'application/json', 'Authorization':('Bearer '+ 
 
 @app.route('/ml', methods=['GET', 'POST'])
 def ml():
+    form = SubmissionForm(request.form)
     print(request.form)
     reqform = request.form.to_dict()
-    form = SubmissionForm(request.form)
+
     if request.method == 'POST' and form.validate():
         selectedcountry = reqform["country"]
         print(selectedcountry)
@@ -178,6 +179,7 @@ def ml():
             respdata = response.read()
             result = json.loads(str(respdata, 'utf-8'))
             result1 = format(result)
+            print("result", result)
             return render_template(
                 'resultML.html',
                 title = " ",

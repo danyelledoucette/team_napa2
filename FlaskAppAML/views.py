@@ -10,7 +10,7 @@ from flask import render_template, request, redirect
 from FlaskAppAML import app
 from FlaskAppAML.forms import SubmissionForm
 
-#WineQualityML
+#WineQualityML (Brandie's) THIS SECTION IS TO BE UPDATED
 BRAIN_ML_KEY=os.environ.get('API_KEY', "3ykY3j9WZDYvS0Dvf5VoJ1kA0yVT5HVzT+foY4SzKvD6LJhHoysBjlEQWaOniNQCGqsjKrytONq1kdxEWo3Scg==")
 BRAIN_URL = os.environ.get('URL', "https://ussouthcentral.services.azureml.net/workspaces/91af20abfc58455182eaaa615d581c59/services/da7cdb9359a443f0abdef36d30ce8f1c/execute?api-version=2.0&details=true")
 # Deployment environment variables defined on Azure (pull in with os.environ)
@@ -58,26 +58,26 @@ def home():
             result = json.loads(str(respdata, 'utf-8'))
             # result = do_something_pretty(result)
             return render_template(
-                'result.html',
+                'resultML.html',
                 title="This is the result from AzureML running our example Student Brain Weight Prediction:",
                 result=result)
         except urllib.error.HTTPError as err:
             result="The request failed with status code: " + str(err.code)
             return render_template(
-                'result.html',
+                'resultML.html',
                 title='There was an error',
                 result=result)
     # Just serve up the input form
     return render_template(
-        'form.html',
+        'formML.html',
         form=form,
         title='Run App',
         year=datetime.now().year,
         message='The Wine Quality Model generated via the Azure ML Api')
 
 
-
-#WineRatingMLModels
+######################################################################
+#Wine Rating ML Models
 MLKEY_US=os.environ.get('API_KEY', "W4urY44dTQGrkQnlYZidPf9qhC7dV2y+syUV7akGKP5+bZ8Z+YMH46j4p4ATzijijzxNXsdrF3nNjcCmjnPIZw==")
 MLURL_US=os.environ.get('URL',"https://ussouthcentral.services.azureml.net/workspaces/3734176412a549a2a4e3613e15756b2f/services/543adb9d102641afa368e61f5501b85f/execute?api-version=2.0&details=true")
 MLHEADERS_US = {'Content-Type':'application/json', 'Authorization':('Bearer '+ MLKEY_US)}
@@ -106,44 +106,12 @@ MLKEY_SPA=os.environ.get('API_KEY', "U6FxZTEa50zK7UKpEV7Swb86a9Hg5tYkxmFxz792UQa
 MLURL_SPA=os.environ.get('URL',"https://ussouthcentral.services.azureml.net/workspaces/3734176412a549a2a4e3613e15756b2f/services/bed77d07641b4206bac3e371710b42d7/execute?api-version=2.0&details=true")
 MLHEADERS_SPA = {'Content-Type':'application/json', 'Authorization':('Bearer '+ MLKEY_SPA)}
 
-# @app.route('/co', methods=['GET', 'POST'])
-# def co():
-#     coform = request.form.to_dict()
-#     print(coform)
-#     if request.method == 'POST':
-#         selectedcountry = coform["country"]
-#         if selectedcountry == 'US':
-#             return render_template(
-#             'formML.html',
-#             MLKEY = MLKEY_US,
-#             MLURL = MLURL_US,
-#             MLHEADERS = MLHEADERS_US,
-#             title='Run Selected Country',
-#             message='Selected: US')    
-#         elif selectedcountry == 'CAN':
-#             return render_template(
-#             'formML.html',
-#             MLKEY = MLKEY_CAN,
-#             MLURL = MLURL_CAN,
-#             MLHEADERS = MLHEADERS_CAN,
-#             title='Run Selected Country',
-#             message='Selected: CAN')
-#         else:
-#             return render_template(
-#             'formML.html',
-#             MLKEY = MLKEY_US,
-#             MLURL = MLURL_US,
-#             MLHEADERS = MLHEADERS_US,
-#             title='Run Selected Country',
-#             message='Selected: US')                
-                
-
 @app.route('/ml', methods=['GET', 'POST'])
 def ml():
+    form = SubmissionForm(request.form)
     print(request.form)
     reqform = request.form.to_dict()
-    print(reqform)
-    form = SubmissionForm(request.form)
+
     if request.method == 'POST' and form.validate():
         selectedcountry = reqform["country"]
         print(selectedcountry)
@@ -157,6 +125,31 @@ def ml():
             MLURL = MLURL_CAN
             MLHEADERS = MLHEADERS_CAN
 
+        elif selectedcountry == 'Australia':
+            MLKEY = MLKEY_AUS
+            MLURL = MLURL_AUS
+            MLHEADERS = MLHEADERS_AUS
+
+        elif selectedcountry == 'Argentina':
+            MLKEY = MLKEY_ARG
+            MLURL = MLURL_ARG
+            MLHEADERS = MLHEADERS_ARG
+
+        elif selectedcountry == 'France':
+            MLKEY = MLKEY_FRA
+            MLURL = MLURL_FRA
+            MLHEADERS = MLHEADERS_FRA
+
+        elif selectedcountry == 'Italy':
+            MLKEY = MLKEY_ITA
+            MLURL = MLURL_ITA
+            MLHEADERS = MLHEADERS_ITA
+
+        elif selectedcountry == 'Spain':
+            MLKEY = MLKEY_SPA
+            MLURL = MLURL_SPA
+            MLHEADERS = MLHEADERS_SPA
+            
         else:
             MLKEY = MLKEY_US
             MLURL = MLURL_US
@@ -181,16 +174,21 @@ def ml():
             }
         body = str.encode(json.dumps(data))
         req = urllib.request.Request(MLURL, body, MLHEADERS)
-        # Send this request to the AML service and render the results on page
         try:
             response = urllib.request.urlopen(req)
             respdata = response.read()
             result = json.loads(str(respdata, 'utf-8'))
-            #result = do_something_pretty(result)
+            result1 = format(result)
             return render_template(
                 'resultML.html',
-                title="This is the result from the Wine Rating Model @AzureML running Wine Rating Prediction:",
-                result=result)
+                title = " ",
+                icountry = reqform["country"],
+                ideslen = reqform["deslen"],
+                ipricerg = reqform["price_range"],
+                ivariety = reqform["variety"],
+                iprovince = reqform["province"],
+                result = result,
+                result1 = result1)
         except urllib.error.HTTPError as err:
             result="The request failed with status code: " + str(err.code)
             return render_template(
@@ -223,141 +221,11 @@ def about():
         year=datetime.now().year,
         message='Your application description page.'
     )
-    
-# """
-# Routes and views for the flask application.
-# """
-# import json
-# import urllib.request
-# import os
 
-# from datetime import datetime
-# from flask import render_template, request, redirect
-# from FlaskAppAML import app
-# #testing
-# from FlaskAppAML.forms import SubmissionForm
-
-# BRAIN_ML_KEY=os.environ.get('API_KEY', "q3EOLRefFR97PJ9Vew877BFx1gy5PIcqlUtfs3dKKPCUPoUJXe2+pWYuAdwGzmROjajreDredWsgzydhH+4Iig==")
-# BRAIN_URL = os.environ.get('URL', "https://ussouthcentral.services.azureml.net/workspaces/9abe4feec820456f9b9ac830f4fe67c6/servic[…]b7b6130fd10049/execute?api-version=2.0&details=true")
-# # Deployment environment variables defined on Azure (pull in with os.environ)
-
-# # Construct the HTTP request header
-# # HEADERS = {'Content-Type':'application/json', 'Authorization':('Bearer '+ API_KEY)}
-
-# HEADERS = {'Content-Type':'application/json', 'Authorization':('Bearer '+ BRAIN_ML_KEY)}
-
-# # Our main app page/route
-# @app.route('/', methods=['GET', 'POST'])
-# @app.route('/home', methods=['GET', 'POST'])
-# def home():
-#     """Renders the home page which is the CNS of the web app currently, nothing pretty."""
-
-#     form = SubmissionForm(request.form)
-
-#     # Form has been submitted
-#     if request.method == 'POST' and form.validate():
-
-#         # Plug in the data into a dictionary object 
-#         #  - data from the input form
-#         #  - text data must be converted to lowercase
-#         data =  {
-#               "Inputs": {
-#                 "input1": {
-#                   "ColumnNames": ["gender", "age", "size", "weight"],
-#                   "Values": [ [
-#                       0,
-#                       1,
-#                       form.title.data.lower(),
-#                       0
-
-#                     ]
-#                   ]
-#                 }
-#               },
-#               "GlobalParameters": {}
-#             }
-
-#         # Serialize the input data into json string
-#         body = str.encode(json.dumps(data))
-
-#         # Formulate the request
-#         #req = urllib.request.Request(URL, body, HEADERS)
-#         req = urllib.request.Request(BRAIN_URL, body, HEADERS)
-
-#         # Send this request to the AML service and render the results on page
-#         try:
-#             # response = requests.post(URL, headers=HEADERS, data=body)
-#             response = urllib.request.urlopen(req)
-#             #print(response)
-#             respdata = response.read()
-#             result = json.loads(str(respdata, 'utf-8'))
-#             result = do_something_pretty(result)
-#             # result = json.dumps(result, indent=4, sort_keys=True)
-#             return render_template(
-#                 'result.html',
-#                 title="This is the result from AzureML running our example Student Brain Weight Prediction:",
-#                 result=result)
-
-#         # An HTTP error
-#         except urllib.error.HTTPError as err:
-#             result="The request failed with status code: " + str(err.code)
-#             return render_template(
-#                 'result.html',
-#                 title='There was an error',
-#                 result=result)
-#             #print(err)
-
-#     # Just serve up the input form
-#     return render_template(
-#         'form.html',
-#         form=form,
-#         title='Run App',
-#         year=datetime.now().year,
-#         message='Demonstrating a website using Azure ML Api')
-
-
-# @app.route('/contact')
-# def contact():
-#     """Renders the contact page."""
-#     return render_template(
-#         'contact.html',
-#         title='Contact',
-#         year=datetime.now().year,
-#         message='Your contact page.'
-#     )
-
-# @app.route('/about')
-# def about():
-#     """Renders the about page."""
-#     return render_template(
-#         'about.html',
-#         title='About',
-#         year=datetime.now().year,
-#         message='Your application description page.'
-#     )
-
-# def do_something_pretty(jsondata):
-#     """We want to process the AML json result to be more human readable and understandable"""
-#     import itertools # for flattening a list of tuples below
-
-#     # We only want the first array from the array of arrays under "Value" 
-#     # - it's cluster assignment and distances from all centroid centers from k-means model
-#     value = jsondata["Results"]["output1"]["value"]["Values"][0]
-#     #valuelen = len(value)
-#     print(value)
-#     # Convert values (a list) to a list of tuples [(cluster#,distance),...]
-#     # valuetuple = list(zip(range(valuelen-1), value[1:(valuelen)]))
-#     # Convert the list of tuples to one long list (flatten it)
-#     # valuelist = list(itertools.chain(*valuetuple))
-
-#     # Convert to a tuple for the list
-#     # data = tuple(list(value[0]) + valuelist)
-
-#     # Build a placeholder for the cluster#,distance values
-#     #repstr = '<tr><td>%d</td><td>%s</td></tr>' * (valuelen-1)
-#     # print(repstr)
-#     output='For a brain with the size of : '+value[2]+ "<br/>Our Algorithm would calculate the weight to be: "+ value[4]
-#     # Build the entire html table for the results data representation
-#     #tablestr = 'Cluster assignment: %s<br><br><table border="1"><tr><th>Cluster</th><th>Distance From Center</th></tr>'+ repstr + "</table>"
-#     #return tablestr % data
-#     return output
+def format(jsondata):
+    import itertools
+    value = jsondata["Results"]["output1"]["value"]["Values"][0]
+    print (value)
+    sz1 = len(value)
+    pwinerating = value[sz1-1]
+    return pwinerating

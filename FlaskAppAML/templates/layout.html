@@ -22,10 +22,10 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url_for('home') }}">Wine Quality ML</a></li>
-                    <li><a href="{{ url_for('ml') }}">Wine Rating ML</a></li>
-                    <li><a href="{{ url_for('about') }}">Wine Selector</a></li>
-                    <li><a href="{{ url_for('contact') }}">Tableau Visualizations</a></li>                    
+                    <!-- <li><a href="{{ url_for('home') }}">Wine Quality Machine Learning</a></li> -->
+                    <li><a href="{{ url_for('ml') }}">Wine Rating Machine Learning</a></li>
+                    <li><a href="{{ url_for('about') }}">Country Comparison</a></li>
+                    <li><a href="{{ url_for('contact') }}">Tableau Visualizations</a></li>
                 </ul>
             </div>
         </div>
@@ -34,9 +34,9 @@
     
     <div class="container body-content">
         {% block content %}{% endblock %}
-        <hr />
+        
         <footer>
-            <p>&copy; {{ year }} - Team Napa 2.0</p>
+            <p><hr>&copy; {{ year }} - Team Napa 2.0</p>
         </footer>
     </div>
 

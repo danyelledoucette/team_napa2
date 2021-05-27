@@ -1,15 +1,12 @@
-var country = ["US", "Spain", "Italy", "France", "Canada", "Argentina", "Australia"]
+var country = ["SELECT", "US", "Spain", "Italy", "France", "Canada", "Argentina", "Australia"]
 console.log(country) 
   var cosamples = country;
   console.log(cosamples)
 
 function init() {
-var gcountry = cosamples[0]
-  if (gcountry == cosamples[0]){idb1 = ["../static/scripts/dwreadall.json"];}
-  else if (gcountry == cosamples[4]){idb1 = ["../static/scripts/dwreadcan.json"];}
-  else {idb1 = ["../static/scripts/dwreadall.json"];}
+var gcountry = cosamples[1]
+var idb1 = ["../static/scripts/dwreadall.json"]
   console.log(idb1)
-
   d3.json(idb1).then((d) => {
     var samples=d;
     console.log(samples)
@@ -22,7 +19,6 @@ var gcountry = cosamples[0]
     var samplesprice = samples.price_range;
     var samplesvariety = samples.variety;
     var samplesprovince = samples.province;
-
   })};
 
 d3.select("selDataset_deslen").html(""); 
@@ -46,8 +42,13 @@ function getData(){
   console.log(document.getElementById("selDataset_country").value)
   console.log(gcountry)
 
-  if (document.getElementById("selDataset_country").value == country[0]){idb1 = ["../static/scripts/dwreadall.json"];}
-  else if (document.getElementById("selDataset_country").value == country[4]){idb1 = ["../static/scripts/dwreadcan.json"];}
+  if (document.getElementById("selDataset_country").value == country[1]){idb1 = ["../static/scripts/dwreadall.json"];}
+  else if (document.getElementById("selDataset_country").value == country[2]){idb1 = ["../static/scripts/dwreadspa.json"];}
+  else if (document.getElementById("selDataset_country").value == country[3]){idb1 = ["../static/scripts/dwreadita.json"];}
+  else if (document.getElementById("selDataset_country").value == country[4]){idb1 = ["../static/scripts/dwreadfra.json"];}
+  else if (document.getElementById("selDataset_country").value == country[5]){idb1 = ["../static/scripts/dwreadcan.json"];}
+  else if (document.getElementById("selDataset_country").value == country[6]){idb1 = ["../static/scripts/dwreadarg.json"];}
+  else if (document.getElementById("selDataset_country").value == country[7]){idb1 = ["../static/scripts/dwreadaus.json"];}
   else {idb1 = ["../static/scripts/dwreadall.json"];}
   console.log(idb1)
  
@@ -120,3 +121,4 @@ function getData(){
     }
     init();
 })};
+
