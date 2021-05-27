@@ -12,7 +12,7 @@
 .w3-badge {height:13px;width:13px;padding:0}
 </style>
 
-    <body style="background-color: rgba(71, 4, 85, 0.425);">
+    <body style="background-color: rgba(71, 4, 85, 0.425); font-family:Arial, Helvetica, sans-serif;">
         
         <!-- Slideshow container-->
 
@@ -21,49 +21,49 @@
             <div class="w3-display-container mySlides">
               <img src="static/images/argentina.jpg" height="500px" width="980px">
               <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
-                Argentinian Wineries
+                Argentina
               </div>
             </div>
             
             <div class="w3-display-container mySlides">
               <img src="static/images/spain.jpg" height="500px" width="980px">
               <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
-                Spanish Wineries
+                Spain
               </div>
             </div>
             
             <div class="w3-display-container mySlides">
               <img src="static/images/france.jpg" height="500px" width="980px">
               <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
-                French Wineries
+                France
               </div>
             </div>
 
             <div class="w3-display-container mySlides">
                 <img src="static/images/australia.jpg" height="500px" width="980px">
                 <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
-                  Australian Wineries
+                  Australia
                 </div>
             </div>
             
             <div class="w3-display-container mySlides">
                 <img src="static/images/italy.jpg" height="500px" width="980px">
                 <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
-                  Italian Wineries
+                  Italy
                 </div>
             </div>
             
             <div class="w3-display-container mySlides">
                 <img src="static/images/canada.jpg" height="500px" width="980px">
                 <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
-                  Canadian Wineries
+                  Canada
                 </div>
             </div>
 
             <div class="w3-display-container mySlides">
                 <img src="static\images\us_winery.jpg" height="500px" width="980px">
                 <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
-                  American Wineries
+                  United States
                 </div>
             </div>
 
@@ -94,43 +94,71 @@
           <br>
 
 
-          <!-- Form container -->
-
+        <!-- Form container -->
+        <!-- Red Wine -->
         <div class="container">
             <div class="row">
-                <div class="col">
-                    <h2 style="font-weight: bolder;">Use our machine learning model to determine a wine's rating based on the following characteristics</h2>
+              <h2 style="font-weight: bolder;">Use our machine learning model to determine a wine's rating based on the following characteristics</h2>
+                <div class="col-md-6">
+                  <h2 style="font-weight: bold; font-size: x-large;">Red Wine:</h2>
                     <br>
                     <form method=post>
                         <dl>
                             <p>
-                                <h3 style="background-color: seashell;">Acidity</h3>
+                                <h3 style="font-weight: bold;">Volatile Acidity</h3>
                                 Enter a pH level.<br/><br/>
                                 {{form.title}}
                             </p>
                             <br>
                             <p>
-                                <h3 style="background-color: seashell;">Alcohol</h3>
+                                <h3 style="font-weight: bold;">Alcohol Percentage</h3>
                                 Enter an alcohol percentage.<br/><br/>
                                 {{form.title}}
                             </p>
                             <br>
                             <p>
-                                <h3 style="background-color: seashell;">Name your wine (Optional)</h3> 
-                            Give a name to your wine selection, if you like.<br /><br />
-                                {{form.text}}
+                              <h3 style="font-weight: bold;">Sulfates</h3>
+                              Enter a sulfates value.<br/><br/>
+                              {{form.title}}
                             </p>
                         </dl>
                         <p><input type="submit" value="submit"</p>
                     </form>
                 </div>
+            
+                <!-- White Wine -->
+                <div class="col-md-6">
+                  <h2 style="font-weight: bold; font-size: x-large;">White Wine:</h2>
+                  <br>
+                  <form method=post>
+                      <dl>
+                          <p>
+                              <h3 style="font-weight: bold;">Volatile Acidity</h3>
+                              Enter a pH level.<br/><br/>
+                              {{form.title}}
+                          </p>
+                          <br>
+                          <p>
+                              <h3 style="font-weight: bold;">Alcohol Percentage</h3>
+                              Enter an alcohol percentage.<br/><br/>
+                              {{form.title}}
+                          </p>
+                          <br>
+                          <p>
+                            <h3 style="font-weight: bold;">Free Sulfur Dioxides</h3>
+                            Enter a free sulfur dioxide value.<br/><br/>
+                            {{form.title}}
+                          </p>
+                      </dl>
+                      <p><input type="submit" value="submit"</p>
+                  </form>
+              </div>
             </div> 
         </div>
 
         <br>
 
         <b><h2>Contact Us:</h2>
-        <!-- <h3>{{ message }}</h3> -->
 
         <address>
             Team Napa Valley<br />
