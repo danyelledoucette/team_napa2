@@ -28,7 +28,7 @@
                 <h3 style="text-align:center">{{ title }}</h3><br>
                 {% if result1 == "80-84" %} 
                 <h2 style="text-align:center"> <strong>Predicted Wine Rating: Below Average </strong></h2>
-                <h3></h3> style="text-align:center"> <strong>Predicted Reviewer's Points (range): {{ result1|safe }} </strong></h3>
+                <h3 style="text-align:center"> <strong>Predicted Reviewer's Points (range): {{ result1|safe }} </strong></h3>
                 {% elif result1 == "85-89" %} 
                 <h2 style="text-align:center"> <strong>Predicted Wine Rating: Good </strong></h2>
                 <h3 style="text-align:center"> <strong>Predicted Reviewer's Points (range): {{ result1|safe }} </strong></h3>
